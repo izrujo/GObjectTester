@@ -23,7 +23,7 @@ public:
     {
         if (GObjectTesterClass->objectName().isEmpty())
             GObjectTesterClass->setObjectName(QString::fromUtf8("GObjectTesterClass"));
-        GObjectTesterClass->resize(600, 400);
+        //GObjectTesterClass->resize(600, 400);
 
         retranslateUi(GObjectTesterClass);
 

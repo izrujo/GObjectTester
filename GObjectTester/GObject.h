@@ -6,6 +6,7 @@
 #include <qrect.h>
 #include <qstring.h>
 #include <qpoint.h>	
+#include <qbrush.h>
 
 using namespace std;
 

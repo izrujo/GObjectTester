@@ -8,6 +8,7 @@
 QtPainter::QtPainter(Long width, Long height, Long capacity)
 	: Painter(capacity) {
 	this->qPixmap = new QPixmap(width, height);
+	this->qPixmap->fill(QColor(235, 235, 235));
 	this->qPainter = new QPainter(this->qPixmap);
 
 	QtGObjectFactory factory;
@@ -70,6 +71,7 @@ void QtPainter::Resize(Long width, Long height) {
 		delete this->qPixmap;
 	}
 	this->qPixmap = new QPixmap(width, height);
+	this->qPixmap->fill(QColor(235, 235, 235));
 	this->qPainter = new QPainter(this->qPixmap);
 }
 
@@ -146,23 +148,27 @@ void QtPainter::DrawLine(const QPoint& point1, const QPoint& point2) {
 }
 
 void QtPainter::DrawLines(const QPointF(*points1), const QPointF(*points2), int lineCount) {
-	QPointF(*pointPairs);
+	QPointF(*pointPairs) = new QPointF[lineCount*2];
+	int j = 0;
 	int i = 0;
 	while (i < lineCount) {
-		pointPairs[i] = points1[i];
-		pointPairs[i + 1] = points2[i];
-		i += 2;
+		pointPairs[j] = points1[i];
+		pointPairs[j + 1] = points2[i];
+		j += 2;
+		i++;
 	}
 	this->qPainter->drawLines(pointPairs, lineCount);
 }
 
 void QtPainter::DrawLines(const QPoint(*points1), const QPoint(*points2), int lineCount) {
-	QPoint(*pointPairs);
+	QPoint(*pointPairs) = new QPoint[lineCount * 2];
+	int j = 0;
 	int i = 0;
 	while (i < lineCount) {
-		pointPairs[i] = points1[i];
-		pointPairs[i + 1] = points2[i];
-		i += 2;
+		pointPairs[j] = points1[i];
+		pointPairs[j + 1] = points2[i];
+		j += 2;
+		i++;
 	}
 	this->qPainter->drawLines(pointPairs, lineCount);
 }
