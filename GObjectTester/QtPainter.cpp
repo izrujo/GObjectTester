@@ -5,10 +5,10 @@
 #include <qpainter.h>
 #include <qpixmap.h>
 
-QtPainter::QtPainter(Long width, Long height, Long capacity)
+QtPainter::QtPainter(Long width, Long height, QColor color, Long capacity)
 	: Painter(capacity) {
 	this->qPixmap = new QPixmap(width, height);
-	this->qPixmap->fill(QColor(235, 235, 235));
+	this->qPixmap->fill(color);
 	this->qPainter = new QPainter(this->qPixmap);
 
 	QtGObjectFactory factory;
@@ -16,7 +16,7 @@ QtPainter::QtPainter(Long width, Long height, Long capacity)
 	this->objects.Store(this->length++, pen);
 	pen->SetObject(this->qPainter);
 
-	GObject *brush = factory.MakeBrush(QColor(255, 255, 255), Qt::SolidPattern);
+	GObject *brush = factory.MakeBrush(color, Qt::SolidPattern);
 	this->objects.Store(this->length++, brush);
 	brush->SetObject(this->qPainter);
 
@@ -63,7 +63,7 @@ void QtPainter::Render(QPainter *painter, int x, int y) {
 	painter->drawPixmap(x, y, *this->qPixmap);
 }
 
-void QtPainter::Resize(Long width, Long height) {
+void QtPainter::Resize(Long width, Long height, QColor color) {
 	if (this->qPainter != NULL) {
 		delete this->qPainter;
 	}
@@ -71,7 +71,7 @@ void QtPainter::Resize(Long width, Long height) {
 		delete this->qPixmap;
 	}
 	this->qPixmap = new QPixmap(width, height);
-	this->qPixmap->fill(QColor(235, 235, 235));
+	this->qPixmap->fill(color);
 	this->qPainter = new QPainter(this->qPixmap);
 }
 
