@@ -244,7 +244,7 @@ void GObjectTester::paintEvent(QPaintEvent *event) {
 	//=================브러쉬 해제================
 
 	//=================브러쉬 설정================
-	brush = factory.MakeBrush(QColor(235, 235, 235), Qt::SolidPattern);
+	brush = factory.MakeBrush(QColor(255,255,255), Qt::SolidPattern);
 	oldBrush = this->painter->SelectObject(*brush);
 	this->painter->Update();
 	//=================브러쉬 설정================
@@ -366,6 +366,7 @@ void GObjectTester::paintEvent(QPaintEvent *event) {
 void GObjectTester::resizeEvent(QResizeEvent *event) {
 	QRect frameRect = this->frameRect();
 	if (this->painter != NULL) {
-		this->painter->Resize(frameRect.width(), frameRect.height());
+		delete this->painter;
+		this->painter = new QtPainter(frameRect.width(), frameRect.height());
 	}
 }
