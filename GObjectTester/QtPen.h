@@ -17,6 +17,12 @@ public:
 	virtual void SetObject(QPainter *qPainter);
 
 	virtual GObject* Clone();
+
+	virtual QBrush& GetBrush();
+	virtual float GetWidth();
+	virtual int GetPenStyle();
+	virtual int GetPenCapStyle();
+	virtual int GetPenJoinStyle();
 };
 
 #endif //_QTPEN_H

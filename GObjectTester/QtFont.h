@@ -14,6 +14,11 @@ public:
 	virtual void SetObject(QPainter *qPainter);
 
 	virtual GObject* Clone();
+
+	virtual QString& GetFamily();
+	virtual int GetPointSize();
+	virtual int GetWeight();
+	virtual bool GetItalic();
 };
 
 #endif //_QTFONT_H

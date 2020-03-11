@@ -14,6 +14,9 @@ public:
 	virtual void SetObject(QPainter *qPainter);
 
 	virtual GObject* Clone();
+
+	virtual QColor& GetColor();
+	virtual int GetStyle();
 };
 
 #endif //_QTBRUSH_H

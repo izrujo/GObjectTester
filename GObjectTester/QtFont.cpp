@@ -29,3 +29,19 @@ void QtFont::SetObject(QPainter *qPainter) {
 GObject* QtFont::Clone() {
 	return new QtFont(*this);
 }
+
+QString& QtFont::GetFamily() {
+	return this->family();
+}
+
+int QtFont::GetPointSize() {
+	return this->pointSize();
+}
+
+int QtFont::GetWeight() {
+	return this->weight();
+}
+
+bool QtFont::GetItalic() {
+	return this->italic();
+}

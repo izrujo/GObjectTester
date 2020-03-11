@@ -29,3 +29,11 @@ void QtBrush::SetObject(QPainter *qPainter) {
 GObject* QtBrush::Clone() {
 	return new QtBrush(*this);
 }
+
+QColor& QtBrush::GetColor() {
+	return const_cast<QColor&>(this->color()); //color() 함수가 const 형식 반환함.
+}
+
+int QtBrush::GetStyle() {
+	return this->style();
+}

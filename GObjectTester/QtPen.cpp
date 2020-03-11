@@ -31,3 +31,23 @@ void QtPen::SetObject(QPainter *qPainter) {
 GObject* QtPen::Clone() {
 	return new QtPen(*this);
 }
+
+QBrush& QtPen::GetBrush() {
+	return this->brush();
+}
+
+float QtPen::GetWidth() {
+	return this->widthF();
+}
+
+int QtPen::GetPenStyle() {
+	return this->style();
+}
+
+int QtPen::GetPenCapStyle() {
+	return this->capStyle();
+}
+
+int QtPen::GetPenJoinStyle() {
+	return this->joinStyle();
+}
