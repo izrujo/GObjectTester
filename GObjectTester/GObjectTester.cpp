@@ -351,8 +351,29 @@ void GObjectTester::paintEvent(QPaintEvent *event) {
 	//=================둥근 사각형================
 	//=================둥근 사각형================
 
+	//=================펜 설정================
+	pen = factory.MakePen(QBrush(QColor(255, 255, 255)), 5, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin);
+	oldPen = this->painter->SelectObject(*pen);
+	this->painter->Update();
+	//=================펜 설정================
+
+	font = this->painter->CurrentObject("Font");
+	int size = font->GetPointSize();
+	rect = this->painter->BoundingRect(QRect(10, 500 - size, 0, 0), Qt::AlignLeft | Qt::AlignTop,
+		QString("aaaaaaa"));
+	rect.setHeight(size);
+	this->painter->FillRect(rect, *factory.MakeBrush(QColor(0, 0, 235)));
+
 	//=================텍스트=====================
+	this->painter->DrawText(10, 500, QString("aaaaaaa"));
 	//=================텍스트=====================
+
+	//=================펜 해제================
+	this->painter->SelectObject(*oldPen);
+	this->painter->Update();
+	if (pen != NULL) {
+		delete pen;
+	}
 
 	//=================범위 지우기================
 	//=================범위 지우기================
